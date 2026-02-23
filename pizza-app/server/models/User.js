@@ -1,9 +1,14 @@
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  role: { type: String, enum: ["user", "admin"], default: "user" },
+const mongoose = require('mongoose');
+
+const UserSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, enum: ['user', 'admin'], default: 'user' },
   isVerified: { type: Boolean, default: false },
-  resetToken: String,
-  resetTokenExpire: Date
-});
+  verificationToken: { type: String },
+  resetPasswordToken: { type: String },
+  resetPasswordExpire: { type: Date }
+}, { timestamps: true });
+
+module.exports = mongoose.model('User', UserSchema);
