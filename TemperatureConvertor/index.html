@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMP - Convertor</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div class="container">
+        <h1>Temp Converter 🌡️</h1>
+
+        <input type="number" id="tempInput" placeholder="Enter temperature">
+
+        <select id="unit">
+            <option value="c">Celsius → Fahrenheit</option>
+            <option value="f">Fahrenheit → Celsius</option>
+        </select>
+
+        <button onclick="convertTemp()">Convert</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+<script>
+    function convertTemp(){
+        let temp = document.getElementById("tempInput").value;
+        let unit = document.getElementById("unit").value;
+        let resultBox = document.getElementById("result");
+
+        if(temp === ""){
+            resultBox.innerHTML = "Please enter a value";
+            return;
+        }
+
+        temp = parseFloat(temp);
+
+        if(unit === "c"){
+            let fahrenheit = (temp * 9/5) + 32;
+            resultBox.innerHTML = temp + "°C = " + fahrenheit.toFixed(2) + "°F";
+        } else {
+            let celsius = (temp - 32) * 5/9;
+            resultBox.innerHTML = temp + "°F = " + celsius.toFixed(2) + "°C";
+        }
+    }
+</script>
+
+</body>
+</html>
